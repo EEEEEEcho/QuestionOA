@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><title>增加工种题库</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="description" content="HexaBit Bootstrap 4x Admin Template">
+    <meta name="author" content="WrapTheme, www.thememakker.com">
+    <!--    <link rel="icon" href="http://v.bootstrapmb.com/2021/6/dcxpt10282/light/favicon.ico" type="image/x-icon">-->
+    <!-- VENDOR CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-multiselect.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-datepicker3.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-colorpicker.css}">
+    <link rel="stylesheet" th:href="@{/css/multi-select.css}">
+    <link rel="stylesheet" th:href="@{static/css/bootstrap-tagsinput.css}">
+    <link rel="stylesheet" th:href="@{static/css/nouislider.min.css}"><!-- MAIN CSS -->
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/color_skins.css}">
+    <link rel="stylesheet" th:href="@{/css/parsley.css}"><!-- MAIN CSS -->
+</head>
+<body class="theme-orange"><!-- Page Loader -->
+<div th:replace="~{commons/commons::loader}"></div>
+<div class="overlay"></div>
+<div id="wrapper">
+    <!-- 头部 -->
+    <div th:replace="~{commons/commons::topbar}"></div>
+    <!-- 右侧 -->
+    <div th:replace="~{commons/commons::rightbar}"></div>
+    <!-- 左侧 -->
+    <div th:replace="~{commons/commons::leftbar}"></div>
+    <div id="main-content">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="header"><h2>增加工种题库</h2></div>
+                        <div class="body">
+                            <form id="basic-form" method="post" th:action="@{/worktype/doAddQuestionInfo}">
+                                <div class="form-group">
+                                    <h4 th:text="'工种名称:' + ${workTypeName}"></h4>
+                                </div>
+                                <input th:value="${workTypeName}" name="workTypeName" hidden="hidden" th:text="${workTypeName}">
+                                <select id="optgroup" class="ms" multiple="multiple" name="questionInfos">
+                                    <option th:each="questionInfo:${questionInfoList}" th:text="${questionInfo}"
+                                    th:value="${questionInfo}"></option>
+<!--                                    <option value="CO">Colorado</option>-->
+<!--                                    <option value="ID">Idaho</option>-->
+<!--                                    <option value="MT">Montana</option>-->
+<!--                                    <option value="NE">Nebraska</option>-->
+<!--                                    <option value="NM">New Mexico</option>-->
+<!--                                    <option value="ND">North Dakota</option>-->
+<!--                                    <option value="UT">Utah</option>-->
+<!--                                    <option value="WY">Wyoming</option>-->
+<!--                                    <optgroup label="Alaskan/Hawaiian Time Zone">-->
+<!--                                        <option value="AK">Alaska</option>-->
+<!--                                        <option value="HI">Hawaii</option>-->
+<!--                                    </optgroup>-->
+<!--                                    <optgroup label="Pacific Time Zone">-->
+<!--                                        <option value="CA">California</option>-->
+<!--                                        <option value="NV">Nevada</option>-->
+<!--                                        <option value="OR">Oregon</option>-->
+<!--                                        <option value="WA">Washington</option>-->
+<!--                                    </optgroup>-->
+<!--                                    <optgroup label="Mountain Time Zone">-->
+<!--                                        -->
+<!--                                    </optgroup>-->
+<!--                                    <optgroup label="Central Time Zone">-->
+<!--                                        <option value="AL">Alabama</option>-->
+<!--                                        <option value="AR">Arkansas</option>-->
+<!--                                        <option value="IL">Illinois</option>-->
+<!--                                        <option value="IA">Iowa</option>-->
+<!--                                        <option value="KS">Kansas</option>-->
+<!--                                        <option value="KY">Kentucky</option>-->
+<!--                                        <option value="LA">Louisiana</option>-->
+<!--                                        <option value="MN">Minnesota</option>-->
+<!--                                        <option value="MS">Mississippi</option>-->
+<!--                                        <option value="MO">Missouri</option>-->
+<!--                                        <option value="OK">Oklahoma</option>-->
+<!--                                        <option value="SD">South Dakota</option>-->
+<!--                                        <option value="TX">Texas</option>-->
+<!--                                        <option value="TN">Tennessee</option>-->
+<!--                                        <option value="WI">Wisconsin</option>-->
+<!--                                    </optgroup>-->
+<!--                                    <optgroup label="Eastern Time Zone">-->
+<!--                                        <option value="CT">Connecticut</option>-->
+<!--                                        <option value="DE">Delaware</option>-->
+<!--                                        <option value="FL">Florida</option>-->
+<!--                                        <option value="GA">Georgia</option>-->
+<!--                                        <option value="IN">Indiana</option>-->
+<!--                                        <option value="ME">Maine</option>-->
+<!--                                        <option value="MD">Maryland</option>-->
+<!--                                        <option value="MA">Massachusetts</option>-->
+<!--                                        <option value="MI">Michigan</option>-->
+<!--                                        <option value="NH">New Hampshire</option>-->
+<!--                                        <option value="NJ">New Jersey</option>-->
+<!--                                        <option value="NY">New York</option>-->
+<!--                                        <option value="NC">North Carolina</option>-->
+<!--                                        <option value="OH">Ohio</option>-->
+<!--                                        <option value="PA">Pennsylvania</option>-->
+<!--                                        <option value="RI">Rhode Island</option>-->
+<!--                                        <option value="SC">South Carolina</option>-->
+<!--                                        <option value="VT">Vermont</option>-->
+<!--                                        <option value="VA">Virginia</option>-->
+<!--                                        <option value="WV">West Virginia</option>-->
+<!--                                    </optgroup>-->
+                                </select>
+                                <br>
+                                <button type="submit" class="btn btn-primary" id="addUserBtn" >增加</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- Javascript -->
+<script th:src="@{/js/libscripts.bundle.js}"></script>
+<script th:src="@{/js/vendorscripts.bundle.js}"></script>
+<script th:src="@{/js/bootstrap-colorpicker.js}"></script>
+<script th:src="@{/js/jquery.inputmask.bundle.js}"></script>
+<script th:src="@{/js/jquery.maskedinput.min.js}"></script>
+<script th:src="@{/js/jquery.multi-select.js}"></script><!-- Multi Select Plugin Js -->
+<script th:src="@{/js/bootstrap-multiselect.js}"></script>
+<script th:src="@{/js/bootstrap-datepicker.min.js}"></script>
+<script th:src="@{/js/bootstrap-tagsinput.js}"></script>
+<script th:src="@{/js/nouislider.js}"></script>
+<script th:src="@{/js/mainscripts.bundle.js}"></script>
+<script th:src="@{/js/advanced-form-elements.js}"></script>
+<script th:src="@{/js/parsley.min.js}"></script>
+<script type="text/javascript">
+    function checkRealName(){
+        let username = document.getElementById("realName").value
+        let usernameWarn = document.getElementById("realNameWarn")
+        let submitBtn = document.getElementById("addUserBtn")
+        if(username === "" || username.length === 0){
+            usernameWarn.innerText = "用户名不能为空"
+            usernameWarn.removeAttribute("hidden")
+            submitBtn.setAttribute("disabled","disabled")
+        }
+        else{
+            usernameWarn.setAttribute("hidden","hidden")
+            submitBtn.removeAttribute("disabled")
+        }
+    }
+    function checkPhoneNumber(){
+        let password = document.getElementById("phoneNumber").value
+        let submitBtn = document.getElementById("addUserBtn")
+        let passwordWarn = document.getElementById("phoneNumberWarn")
+        if(password.length !== 11){
+            passwordWarn.innerText = "电话号码应为11位"
+            passwordWarn.removeAttribute("hidden")
+            submitBtn.setAttribute("disabled","disabled")
+        }
+        else{
+            passwordWarn.setAttribute("hidden","hidden")
+            submitBtn.removeAttribute("disabled")
+        }
+    }
+    // function checkRePassword(){
+    //     let password = document.getElementById("password").value
+    //     let repassword = document.getElementById("repassword").value
+    //     let submitBtn = document.getElementById("addUserBtn")
+    //     let repasswordWarn = document.getElementById("rePasswordWarn")
+    //     if(password !== repassword){
+    //         repasswordWarn.innerText = "两次输入的密码不一致"
+    //         repasswordWarn.removeAttribute("hidden")
+    //         submitBtn.setAttribute("disabled","disabled")
+    //     }
+    //     else{
+    //         repasswordWarn.setAttribute("hidden","hidden")
+    //         submitBtn.removeAttribute("disabled")
+    //     }
+    // }
+    // function checkLevel(){
+    //     let level = document.getElementById("level").value
+    //     let levelWarn = document.getElementById("levelWarn")
+    //     let submitBtn = document.getElementById("addUserBtn")
+    //     if(level === "" || level.length === 0){
+    //         levelWarn.innerText = "级别不能为空"
+    //         levelWarn.removeAttribute("hidden")
+    //         submitBtn.setAttribute("disabled","disabled")
+    //     }
+    //     else{
+    //         levelWarn.setAttribute("hidden","hidden")
+    //         submitBtn.removeAttribute("disabled")
+    //     }
+    // }
+</script>
+</body>
+</html>

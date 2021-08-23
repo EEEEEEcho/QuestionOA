@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <!--    通用加载-->
+    <div class="page-loader-wrapper" th:fragment="loader">
+        <div class="loader">
+            <div class="m-t-30">
+                <img th:src="@{/picture/icon-light.svg}" width="48" height="48" alt="HexaBit"/>
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <!--通用头部-->
+    <nav class="navbar navbar-fixed-top" th:fragment="topbar">
+    <div class="container-fluid">
+        <div class="navbar-left">
+            <div class="navbar-btn">
+                <!--       这是一个定制的图标 -->
+                <a href=""><img src="static/picture/icon-light.svg" alt="HexaBit Logo" class="img-fluid logo"/></a>
+                <button type="button" class="btn-toggle-offcanvas"><i class="lnr lnr-menu fa fa-bars"></i></button>
+            </div>
+            <a href="javascript:void(0);" class="icon-menu btn-toggle-fullwidth"><i
+                    class="fa fa-arrow-left"></i></a>
+        </div>
+        <div class="navbar-right">
+<!--            注释掉搜索框-->
+<!--            <form id="navbar-search" class="navbar-form search-form">-->
+<!--                <input value="" class="form-control" placeholder="Search here..." type="text"/>-->
+<!--                <button type="button" class="btn btn-default"><i class="icon-magnifier"></i></button>-->
+<!--            </form>-->
+            <div id="navbar-menu">
+                <ul class="nav navbar-nav">
+                    <li><a href="javascript:void(0);" class="right_toggle icon-menu" title="Right Menu"><i
+                            class="icon-settings"></i></a></li>
+                    <li><a th:href="@{/logout}" class="icon-menu"><i class="icon-power"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+    <!--通用右侧-->
+    <div id="rightbar" class="rightbar" th:fragment="rightbar">
+        <ul class="nav nav-tabs-new">
+            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#setting">Settings</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="setting">
+                <div class="slim_scroll">
+                    <div class="card">
+                        <h6>Choose Theme</h6>
+                        <ul class="choose-skin list-unstyled mb-0">
+                            <li data-theme="purple">
+                                <div class="purple"></div>
+                            </li>
+                            <li data-theme="green">
+                                <div class="green"></div>
+                            </li>
+                            <li data-theme="orange" class="active">
+                                <div class="orange"></div>
+                            </li>
+                            <li data-theme="blue">
+                                <div class="blue"></div>
+                            </li>
+                            <li data-theme="blush">
+                                <div class="blush"></div>
+                            </li>
+                            <li data-theme="cyan">
+                                <div class="cyan"></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--通用左侧-->
+    <div id="left-sidebar" class="sidebar" th:fragment="leftbar">
+        <div class="navbar-brand">
+            <!--     定制的图标-->
+            <a href="">
+                <span>学习平台管理系统</span></a>
+            <button type="button" class="btn-toggle-offcanvas btn btn-sm btn-default float-right"><i
+                    class="lnr lnr-menu fa fa-chevron-circle-left"></i></button>
+        </div>
+        <div class="sidebar-scroll">
+            <div class="user-account">
+
+                <div class="dropdown">
+                    <span>欢迎,</span><strong>管理员</strong>
+                </div>
+            </div>
+            <nav id="left-sidebar-nav" class="sidebar-nav">
+                <ul id="main-menu" class="metismenu">
+                    <!--                    <li class="active"><a href=""><i class="icon-home"></i><span>平台首页</span></a></li>-->
+                    <li><a th:href="@{/index}"><i class="icon-home"></i><span>系统首页</span></a></li>
+                    <li><a th:href="@{/user/getAll}"><i class="fa fa-group"></i><span>用户管理</span></a></li>
+                    <li><a th:href="@{/worktype/getAllWorkType}"><i class="fa fa-graduation-cap"></i><span>工种管理</span></a></li>
+                    <li><a th:href="@{/questioninfo/getAllQuestionInfo}"><i class="fa fa-navicon"></i><span>题目管理</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</html>

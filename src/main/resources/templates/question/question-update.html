@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><title>修改题目信息</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="description" content="HexaBit Bootstrap 4x Admin Template">
+    <meta name="author" content="WrapTheme, www.thememakker.com">
+    <!--    <link rel="icon" href="http://v.bootstrapmb.com/2021/6/dcxpt10282/light/favicon.ico" type="image/x-icon">-->
+    <!-- VENDOR CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-multiselect.css}">
+    <link rel="stylesheet" th:href="@{/css/parsley.css}"><!-- MAIN CSS -->
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/color_skins.css}">
+</head>
+<body class="theme-orange"><!-- Page Loader -->
+<div th:replace="~{commons/commons::loader}"></div>
+<div class="overlay"></div>
+<div id="wrapper">
+    <!-- 头部 -->
+    <div th:replace="~{commons/commons::topbar}"></div>
+    <!-- 右侧 -->
+    <div th:replace="~{commons/commons::rightbar}"></div>
+    <!-- 左侧 -->
+    <div th:replace="~{commons/commons::leftbar}"></div>
+    <div id="main-content">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="header"><h2>修改题目信息</h2></div>
+                        <div class="body">
+                            <form id="basic-form" method="post" th:action="@{/question/doUpdateQuestion}">
+                                <div class="form-group">
+                                    <input type="text" hidden="hidden" name="id" th:value="${question.getId()}">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" hidden="hidden" name="questionInfo" th:value="${question.getQuestionInfo()}">
+                                </div>
+                                <div class="form-group"><label>题目</label><textarea name="title" th:value="${question.getTitle()}" th:text="${question.getTitle()}" class="form-control" rows="5"
+                                                                                          cols="30"
+                                                                                          required=""></textarea></div>
+                                <div class="form-group">
+                                    <label>选项</label>
+                                    <input type="text" class="form-control" name="options" id="options" required="" th:value="${question.getOptions()}"></div>
+                                <div style="color: red">选项必须是此类格式["A:xx","B:xx","C:xx","D:xx"]（注意标点符号为英文），例如：["A:甲","B:乙","C:丙","D:丁"]，否则修改无效</div>
+                                <div id="optionsWarn" hidden="hidden" style="color: red"></div>
+
+                                <div class="form-group">
+                                    <label>答案</label>
+                                    <input type="text" class="form-control" name="answer" id="answer" required="" th:value="${question.getAnswer()}"></div>
+                                <div style="color: red">答案必须是此类格式["A","B","C","D"]（注意标点符号为英文），例如：单选["A"]，多选["A","B","C"]否则修改无效</div>
+                                <div id="answersWarn" hidden="hidden" style="color: red"></div>
+
+
+                                <div class="form-group">
+                                    <label>类型(判断题为单选)</label><br>
+                                    <label class="fancy-radio">
+                                        <input type="radio" name="type" value="单选" required=""
+                                        data-parsley-errors-container="#error-radio" th:checked="${question.getType() == '单选'}"><span><i></i>单选</span>
+                                    </label>
+                                    <label class="fancy-radio">
+                                        <input type="radio" name="type" value="多选" th:checked="${question.getType() == '多选'}"><span><i></i>多选</span>
+                                    </label>
+                                    <p id="error-radio"></p>
+                                </div>
+                                <br>
+                                <button type="submit" class="btn btn-primary" id="addUserBtn">修改题目</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- Javascript -->
+<script th:src="@{/js/libscripts.bundle.js}"></script>
+<script th:src="@{/js/vendorscripts.bundle.js}"></script>
+<script th:src="@{/js/bootstrap-multiselect.js}"></script>
+<script th:src="@{/js/parsley.min.js}"></script>
+<script th:src="@{/js/mainscripts.bundle.js}"></script>
+</body>
+</html>

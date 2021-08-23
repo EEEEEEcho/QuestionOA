@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><title>添加题库</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="description" content="HexaBit Bootstrap 4x Admin Template">
+    <meta name="author" content="WrapTheme, www.thememakker.com">
+    <!--    <link rel="icon" href="http://v.bootstrapmb.com/2021/6/dcxpt10282/light/favicon.ico" type="image/x-icon">-->
+    <!-- VENDOR CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-multiselect.css}">
+    <link rel="stylesheet" th:href="@{/css/parsley.css}"><!-- MAIN CSS -->
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/color_skins.css}">
+</head>
+<body class="theme-orange"><!-- Page Loader -->
+<div th:replace="~{commons/commons::loader}"></div>
+<div class="overlay"></div>
+<div id="wrapper">
+    <!-- 头部 -->
+    <div th:replace="~{commons/commons::topbar}"></div>
+    <!-- 右侧 -->
+    <div th:replace="~{commons/commons::rightbar}"></div>
+    <!-- 左侧 -->
+    <div th:replace="~{commons/commons::leftbar}"></div>
+    <div id="main-content">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="header"><h2>添加题库</h2></div>
+                        <div class="body">
+                            <form id="basic-form" method="post" th:action="@{/questioninfo/doAddQuestionInfo}" enctype="multipart/form-data">
+
+                                <div class="form-group">
+                                    <div class="input-group-prepend"><span class="input-group-text">文件上传</span></div>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="questionFile">
+                                        <label class="custom-file-label" for="inputGroupFile01">选择本地文件</label></div>
+                                    <div style="color: red">注意：所选文件的格式必须为.doc或.docx类型，否则无法上传</div>
+                                    <div style="color: red">文件名称即题库名称，若想传入新题库，请保证文件名与已有题库不冲突</div>
+                                    <div style="color: red">若想扩充现有题库，请保证文件名与需要扩充的现有题库名称相同</div>
+                                </div>
+                                <div class="form-group">
+                                    <label>关联工种</label>
+                                    <div class="input-group mb-3">
+                                        <select class="custom-select" id="inputGroupSelect03" name="workType">
+                                            <option th:each="workType:${workTypeList}"
+                                                    th:text="${workType.getName()}"
+                                                    th:value="${workType.getName()}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <br>
+                                <button type="submit" class="btn btn-primary" id="addUserBtn">添加题库</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- Javascript -->
+<script th:src="@{/js/libscripts.bundle.js}"></script>
+<script th:src="@{/js/vendorscripts.bundle.js}"></script>
+<script th:src="@{/js/bootstrap-multiselect.js}"></script>
+<script th:src="@{/js/parsley.min.js}"></script>
+<script th:src="@{/js/mainscripts.bundle.js}"></script>
+</body>
+</html>

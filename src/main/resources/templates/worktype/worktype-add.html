@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><title>新增工种</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="description" content="HexaBit Bootstrap 4x Admin Template">
+    <meta name="author" content="WrapTheme, www.thememakker.com">
+    <!--    <link rel="icon" href="http://v.bootstrapmb.com/2021/6/dcxpt10282/light/favicon.ico" type="image/x-icon">-->
+    <!-- VENDOR CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-multiselect.css}">
+    <link rel="stylesheet" th:href="@{/css/parsley.css}"><!-- MAIN CSS -->
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/color_skins.css}">
+</head>
+<body class="theme-orange"><!-- Page Loader -->
+<div th:replace="~{commons/commons::loader}"></div>
+<div class="overlay"></div>
+<div id="wrapper">
+    <!-- 头部 -->
+    <div th:replace="~{commons/commons::topbar}"></div>
+    <!-- 右侧 -->
+    <div th:replace="~{commons/commons::rightbar}"></div>
+    <!-- 左侧 -->
+    <div th:replace="~{commons/commons::leftbar}"></div>
+    <div id="main-content">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="header"><h2>添加工种</h2></div>
+                        <div class="body">
+                            <form id="basic-form" method="post" th:action="@{/worktype/doAdd}">
+                                <div class="form-group">
+                                    <label>工种名</label>
+                                    <input type="text" class="form-control" required="" id="name" name="name" onblur="checkName()">
+                                    <div id="nameWarn" hidden="hidden" style="color: red"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>工种全拼</label>
+                                    <input type="text" class="form-control" required="" id="type" name="type" onblur="checkType()">
+                                    <div style="color: red">工种全拼是指工种名字的首字母全拼，例如：采油工的全拼为cyg</div>
+                                    <div id="typeWarn" hidden="hidden" style="color: red"></div>
+                                </div>
+                                <br>
+                                <button type="submit" class="btn btn-primary" id="addUserBtn">添加工种</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- Javascript -->
+<script th:src="@{/js/libscripts.bundle.js}"></script>
+<script th:src="@{/js/vendorscripts.bundle.js}"></script>
+<script th:src="@{/js/bootstrap-multiselect.js}"></script>
+<script th:src="@{/js/parsley.min.js}"></script>
+<script th:src="@{/js/mainscripts.bundle.js}"></script>
+<script type="text/javascript">
+    function checkName(){
+        let name = document.getElementById("name").value
+        let nameWarn = document.getElementById("nameWarn")
+        let submitBtn = document.getElementById("addUserBtn")
+        if(name === "" || name.length === 0){
+            nameWarn.innerText = "工种名不能为空"
+            nameWarn.removeAttribute("hidden")
+            submitBtn.setAttribute("disabled","disabled")
+            return;
+        }
+        $.ajax({
+            url : "http://127.0.0.1:9007/api/judgeWorkTypeName",
+            type : "GET",
+            data : "name=" + name,
+            async : true,
+            success: function (data){
+                if(data > 0){
+                    nameWarn.innerText = "工种名重复"
+                    nameWarn.removeAttribute("hidden")
+                    submitBtn.setAttribute("disabled","disabled")
+                }
+            }
+        });
+        nameWarn.setAttribute("hidden","hidden")
+        submitBtn.removeAttribute("disabled")
+    }
+    function checkType(){
+        let type = document.getElementById("type").value
+        let submitBtn = document.getElementById("addUserBtn")
+        let typeWarn = document.getElementById("typeWarn")
+        if(type === "" || type.length === 0){
+            typeWarn.innerText = "工种类型不能为空"
+            typeWarn.removeAttribute("hidden")
+            submitBtn.setAttribute("disabled","disabled")
+            return;
+        }
+
+        $.ajax({
+            url : "http://127.0.0.1:9007/api/judgeWorkTypeType",
+            type : "GET",
+            data : "type=" + type,
+            async : true,
+            success: function (data){
+                if(data > 0){
+                    typeWarn.innerText = "工种类型重复"
+                    typeWarn.removeAttribute("hidden")
+                    submitBtn.setAttribute("disabled","disabled")
+                }
+            }
+        });
+        typeWarn.setAttribute("hidden","hidden")
+        submitBtn.removeAttribute("disabled")
+    }
+</script>
+</body>
+</html>

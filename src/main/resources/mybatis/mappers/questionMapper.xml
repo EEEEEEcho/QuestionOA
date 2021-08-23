@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.echo.mapper.QuestionMapper">
+    <resultMap id="questionMap" type="com.echo.pojo.Question">
+        <result column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="answer" property="answer" />
+        <result column="options" property="options" />
+        <result column="type" property="type" />
+        <result column="question_info" property="questionInfo" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+    <select id="getAllQuestionInfo" resultType="string">
+        select distinct question_info from tb_test_question
+    </select>
+
+    <delete id="deleteQuestionByInfo" parameterType="string">
+        delete from tb_test_question where question_info = #{questionInfoName}
+    </delete>
+
+    <select id="getQuestionByInfo" parameterType="string" resultMap="questionMap">
+        select * from tb_test_question where question_info = #{questionInfoName}
+    </select>
+
+    <delete id="deleteQuestionById" parameterType="int">
+        delete from tb_test_question where id = #{questionId}
+    </delete>
+
+    <select id="getQuestionById" parameterType="int" resultMap="questionMap">
+        select * from tb_test_question where id = #{questionId}
+    </select>
+
+    <update id="updateQuestionById" parameterType="com.echo.pojo.Question">
+        update tb_test_question set title = #{title},options = #{options},answer = #{answer},type = #{type} where id = #{id}
+    </update>
+
+    <insert id="addQuestion" parameterType="com.echo.pojo.Question">
+        insert into tb_test_question(title, answer, options, type, question_info) values (#{title},#{answer},#{options},#{type},#{questionInfo})
+    </insert>
+</mapper>

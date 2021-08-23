@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.echo.mapper.WorkTypeMapper">
+    <resultMap id="workTypeMap" type="com.echo.pojo.WorkType">
+        <result column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="create_time" property="createTime" />
+        <result column="type" property="type" />
+    </resultMap>
+    <select id="findAllWorkType" resultMap="workTypeMap">
+        select * from tb_worktype
+    </select>
+
+    <select id="findWorkTypeById" resultMap="workTypeMap">
+        select * from tb_worktype where id = #{id}
+    </select>
+
+    <update id="updateWorkType" parameterType="com.echo.pojo.WorkType">
+        update tb_worktype set name = #{name},type=#{type} where id = #{id}
+    </update>
+
+    <delete id="deleteWorkType">
+        delete from tb_worktype where id = #{id}
+    </delete>
+
+    <select id="judgeName" parameterType="string" resultType="int">
+        select count(*) from tb_worktype where name = #{name}
+    </select>
+
+    <select id="judgeType" parameterType="string" resultType="int">
+        select count(*) from tb_worktype where type = #{type}
+    </select>
+
+    <insert id="addWorkType" parameterType="com.echo.pojo.WorkType">
+        insert into tb_worktype(id, name, type) VALUES (#{id},#{name},#{type})
+    </insert>
+</mapper>

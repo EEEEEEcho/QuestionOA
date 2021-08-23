@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><title>修改用户信息</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="description" content="HexaBit Bootstrap 4x Admin Template">
+    <meta name="author" content="WrapTheme, www.thememakker.com">
+    <!--    <link rel="icon" href="http://v.bootstrapmb.com/2021/6/dcxpt10282/light/favicon.ico" type="image/x-icon">-->
+    <!-- VENDOR CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-multiselect.css}">
+    <link rel="stylesheet" th:href="@{/css/parsley.css}"><!-- MAIN CSS -->
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/color_skins.css}">
+</head>
+<body class="theme-orange"><!-- Page Loader -->
+<div th:replace="~{commons/commons::loader}"></div>
+<div class="overlay"></div>
+<div id="wrapper">
+    <!-- 头部 -->
+    <div th:replace="~{commons/commons::topbar}"></div>
+    <!-- 右侧 -->
+    <div th:replace="~{commons/commons::rightbar}"></div>
+    <!-- 左侧 -->
+    <div th:replace="~{commons/commons::leftbar}"></div>
+    <div id="main-content">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="header"><h2>修改用户信息</h2></div>
+                        <div class="body">
+                            <form id="basic-form" method="post" th:action="@{/user/doUpdate}">
+                                <div class="form-group">
+                                    <input type="text" hidden="hidden" name="id" th:value="${user.getId()}">
+                                </div>
+                                <div class="form-group">
+                                    <label>用户名</label>
+                                    <input type="text" class="form-control" required="" id="realName" name="realName" th:value="${user.getRealName()}" onblur="checkRealName()">
+                                    <div id="realNameWarn" hidden="hidden" style="color: red"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>电话</label>
+                                    <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" required="" th:value="${user.getPhoneNumber()}" onblur="checkPhoneNumber()"></div>
+                                <div id="phoneNumberWarn" hidden="hidden" style="color: red"></div>
+
+                                <div class="form-group">
+                                    <label>工种</label>
+                                    <div class="input-group mb-3">
+                                        <select class="custom-select" id="inputGroupSelect03" name="workType">
+                                            <option th:each="workType:${workTypeList}" th:text="${workType.getName()}" th:value="${workType.getName()}"
+                                                    th:selected="${workType.getName() == user.getWorkType()}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>角色</label><br>
+                                    <label class="fancy-radio">
+                                        <input type="radio" name="role" value="custom" required=""
+                                        data-parsley-errors-container="#error-radio" th:checked="${user.getRole() == '用户'}"><span><i></i>用户</span>
+                                    </label>
+                                    <label class="fancy-radio">
+                                        <input type="radio" name="role" value="admin" th:checked="${user.getRole() == '管理员'}"><span><i></i>管理员</span>
+                                    </label>
+                                    <p id="error-radio"></p>
+                                </div>
+                                <br>
+                                <button type="submit" class="btn btn-primary" id="addUserBtn">修改用户</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- Javascript -->
+<script th:src="@{/js/libscripts.bundle.js}"></script>
+<script th:src="@{/js/vendorscripts.bundle.js}"></script>
+<script th:src="@{/js/bootstrap-multiselect.js}"></script>
+<script th:src="@{/js/parsley.min.js}"></script>
+<script th:src="@{/js/mainscripts.bundle.js}"></script>
+<script type="text/javascript">
+    function checkRealName(){
+        let username = document.getElementById("realName").value
+        let usernameWarn = document.getElementById("realNameWarn")
+        let submitBtn = document.getElementById("addUserBtn")
+        if(username === "" || username.length === 0){
+            usernameWarn.innerText = "用户名不能为空"
+            usernameWarn.removeAttribute("hidden")
+            submitBtn.setAttribute("disabled","disabled")
+        }
+        else{
+            usernameWarn.setAttribute("hidden","hidden")
+            submitBtn.removeAttribute("disabled")
+        }
+    }
+    function checkPhoneNumber(){
+        let password = document.getElementById("phoneNumber").value
+        let submitBtn = document.getElementById("addUserBtn")
+        let passwordWarn = document.getElementById("phoneNumberWarn")
+        if(password.length !== 11){
+            passwordWarn.innerText = "电话号码应为11位"
+            passwordWarn.removeAttribute("hidden")
+            submitBtn.setAttribute("disabled","disabled")
+        }
+        else{
+            passwordWarn.setAttribute("hidden","hidden")
+            submitBtn.removeAttribute("disabled")
+        }
+    }
+    // function checkRePassword(){
+    //     let password = document.getElementById("password").value
+    //     let repassword = document.getElementById("repassword").value
+    //     let submitBtn = document.getElementById("addUserBtn")
+    //     let repasswordWarn = document.getElementById("rePasswordWarn")
+    //     if(password !== repassword){
+    //         repasswordWarn.innerText = "两次输入的密码不一致"
+    //         repasswordWarn.removeAttribute("hidden")
+    //         submitBtn.setAttribute("disabled","disabled")
+    //     }
+    //     else{
+    //         repasswordWarn.setAttribute("hidden","hidden")
+    //         submitBtn.removeAttribute("disabled")
+    //     }
+    // }
+    // function checkLevel(){
+    //     let level = document.getElementById("level").value
+    //     let levelWarn = document.getElementById("levelWarn")
+    //     let submitBtn = document.getElementById("addUserBtn")
+    //     if(level === "" || level.length === 0){
+    //         levelWarn.innerText = "级别不能为空"
+    //         levelWarn.removeAttribute("hidden")
+    //         submitBtn.setAttribute("disabled","disabled")
+    //     }
+    //     else{
+    //         levelWarn.setAttribute("hidden","hidden")
+    //         submitBtn.removeAttribute("disabled")
+    //     }
+    // }
+</script>
+</body>
+</html>
