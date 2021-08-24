@@ -20,4 +20,9 @@ public class IndexController {
     public String doLogin(){
         return "login";
     }
+
+    @GetMapping("/imageFail")
+    public String imageFail(){
+        return "image-500";
+    }
 }

@@ -20,12 +20,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //请求授权的规则，必须要有管理员权限才可以访问
         http.authorizeRequests()
-                .antMatchers("/user").hasRole("admin")
-        .antMatchers("/question").hasRole("admin")
-        .antMatchers("/questioninfo").hasRole("admin")
-                .antMatchers("/worktype").hasRole("admin")
-        .antMatchers("/").hasRole("admin")
-                .antMatchers("/index").hasRole("admin")
+                .antMatchers("/user").hasRole("管理员")
+        .antMatchers("/question").hasRole("管理员")
+        .antMatchers("/questioninfo").hasRole("管理员")
+                .antMatchers("/worktype").hasRole("管理员")
+        .antMatchers("/").hasRole("管理员")
+                .antMatchers("/index").hasRole("管理员")
         .antMatchers("/fail").permitAll();
 
         //在前面的antMatchers中所匹配的，没有权限会到登录页面,需要开启登录的页面，并自定义登录页面

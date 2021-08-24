@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><title>修改新闻内容</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="description" content="HexaBit Bootstrap 4x Admin Template">
+    <meta name="author" content="WrapTheme, www.thememakker.com">
+    <!--    <link rel="icon" href="http://v.bootstrapmb.com/2021/6/dcxpt10282/light/favicon.ico" type="image/x-icon">-->
+    <!-- VENDOR CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-multiselect.css}">
+    <link rel="stylesheet" th:href="@{/css/parsley.css}"><!-- MAIN CSS -->
+    <link rel="stylesheet" th:href="@{/css/summernote.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/color_skins.css}">
+</head>
+<body class="theme-orange"><!-- Page Loader -->
+<div th:replace="~{commons/commons::loader}"></div>
+<div class="overlay"></div>
+<div id="wrapper">
+    <!-- 头部 -->
+    <div th:replace="~{commons/commons::topbar}"></div>
+    <!-- 右侧 -->
+    <div th:replace="~{commons/commons::rightbar}"></div>
+    <!-- 左侧 -->
+    <div th:replace="~{commons/commons::leftbar}"></div>
+    <div id="main-content">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="header"><h2>修改新闻内容</h2></div>
+                        <div class="body">
+                            <form id="basic-form" method="post" th:action="@{/news/doUpdate}" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <input type="text" hidden="hidden" name="id" th:value="${news.getId()}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="title">标题</label>
+                                    <input type="text" th:value="${news.getTitle()}" class="form-control" required="" id="title" name="title">
+                                </div>
+                                <div class="form-group">
+                                    <label for="publish">来源</label>
+                                    <input type="text" th:value="${news.getPublish()}" class="form-control" required="" id="publish" name="publish">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputGroupFile01">封面图</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="imageFile" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg">
+                                        <label class="custom-file-label" for="inputGroupFile01">选择本地文件</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="card">
+                                        <div class="header"><h2>内容</h2></div>
+                                        <div class="body">
+                                            <textarea class="summernote" th:text="${news.getContent()}" th:value="${news.getContent()}" name="content"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary" id="addUserBtn">修改新闻</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- Javascript -->
+<script th:src="@{/js/libscripts.bundle.js}"></script>
+<script th:src="@{/js/vendorscripts.bundle.js}"></script>
+<script th:src="@{/js/bootstrap-multiselect.js}"></script>
+<script th:src="@{/js/parsley.min.js}"></script>
+<script th:src="@{/js/mainscripts.bundle.js}"></script>
+<script th:src="@{/js/summernote.js}"></script>
+</body>
+</html>

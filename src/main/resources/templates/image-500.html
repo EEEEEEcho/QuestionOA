@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head><title>文件上传错误</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="description" content="HexaBit Bootstrap 4x Admin Template">
+    <meta name="author" content="WrapTheme, www.thememakker.com">
+    <link rel="icon" href="http://v.bootstrapmb.com/2021/6/dcxpt10282/light/favicon.ico" type="image/x-icon">
+    <!-- VENDOR CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/css/color_skins.css}"/>
+</head>
+<body class="theme-orange"><!-- WRAPPER -->
+<div id="wrapper" class="auth-main">
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-lg-8">
+                <div class="auth_detail">
+                    <h2 class="text-monospace">很抱歉<br>您需要检查
+                        <div id="carouselExampleControls" class="carousel vert slide" data-ride="carousel"
+                             data-interval="1500">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">图片</div>
+                                <div class="carousel-item">格式是否正确</div>
+                                <div class="carousel-item">大小是否超过10MB</div>
+                            </div>
+                        </div>
+                    </h2>
+                    <p>图片导入错误</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="header"><h3><span class="clearfix title"><span class="number">500</span><br><span>Internal Server Error</span></span>
+                    </h3></div>
+                    <div class="body"><p>请注意图片的格式和大小</p>
+                        <p><a th:href="@{/news/getAllNews}" class="btn btn-primary btn-block"><i
+                                class="fa fa-home"></i><span>新闻列表</span></a></p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- END WRAPPER -->
+<script type="text/javascript" th:src="@{./js/libscripts.bundle.js}" ></script>
+<script type="text/javascript" th:src="@{./js/vendorscripts.bundle.js}" ></script>
+<script type="text/javascript" th:src="@{/js/mainscripts.bundle.js}" ></script>
+</body>
+</html>

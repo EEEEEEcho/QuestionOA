@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.echo.mapper.NewsMapper">
+    <resultMap id="newsMap" type="com.echo.pojo.News">
+        <result column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="publish" property="publish" />
+        <result column="img_url" property="imgUrl" />
+        <result column="content" property="content" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+    
+    <select id="findNewsWithoutContent" parameterType="string" resultMap="newsMap">
+        select id,title,publish,img_url,update_time from tb_news;
+    </select>
+
+    <select id="findNewsById" parameterType="string" resultMap="newsMap">
+        select * from tb_news where id = #{id};
+    </select>
+
+    <update id="updateNewsById" parameterType="com.echo.pojo.News">
+        update
+            tb_news
+        set
+            title = #{title},publish = #{publish},img_url = #{imgUrl},content = #{content}
+        where id = #{id}
+    </update>
+</mapper>

@@ -1,5 +1,6 @@
 package com.echo.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -8,6 +9,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 
 @Configuration
 public class MvcConfig extends WebMvcConfigurationSupport {
+    //    本地路径
+    @Value("${application.profile}")
+    private String profile ;
+    //    对外虚拟路径
+    @Value("${application.staticAccessPath}")
+    private String staticAccessPath ;
+
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("index");
@@ -18,5 +26,8 @@ public class MvcConfig extends WebMvcConfigurationSupport {
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX+"/templates/");
         registry.addResourceHandler("/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX+"/static/");
+        registry.addResourceHandler(staticAccessPath).addResourceLocations("file:"+profile);
     }
+
+
 }
