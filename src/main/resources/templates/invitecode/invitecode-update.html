@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><title>修改邀请码</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="description" content="HexaBit Bootstrap 4x Admin Template">
+    <meta name="author" content="WrapTheme, www.thememakker.com">
+    <!--    <link rel="icon" href="http://v.bootstrapmb.com/2021/6/dcxpt10282/light/favicon.ico" type="image/x-icon">-->
+    <!-- VENDOR CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-multiselect.css}">
+    <link rel="stylesheet" th:href="@{/css/parsley.css}"><!-- MAIN CSS -->
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/color_skins.css}">
+</head>
+<body class="theme-orange"><!-- Page Loader -->
+<div th:replace="~{commons/commons::loader}"></div>
+<div class="overlay"></div>
+<div id="wrapper">
+    <!-- 头部 -->
+    <div th:replace="~{commons/commons::topbar}"></div>
+    <!-- 右侧 -->
+    <div th:replace="~{commons/commons::rightbar}"></div>
+    <!-- 左侧 -->
+    <div th:replace="~{commons/commons::leftbar}"></div>
+    <div id="main-content">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="header"><h2>修改邀请码</h2></div>
+                        <div class="body">
+                            <form id="basic-form" method="post" th:action="@{/inviteCode/doUpdate}">
+
+                                <div class="form-group">
+                                    <label>邀请码</label>
+                                    <input type="text" th:value="${inviteCode}" class="form-control" required="" id="inviteCode" name="inviteCode" onblur="checkInviteCode()">
+                                    <div id="inviteCodeWarn" hidden="hidden" style="color: red"></div>
+                                </div>
+                                <br>
+                                <button type="submit" class="btn btn-primary" id="addUserBtn">修改邀请码</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- Javascript -->
+<script th:src="@{/js/libscripts.bundle.js}"></script>
+<script th:src="@{/js/vendorscripts.bundle.js}"></script>
+<script th:src="@{/js/bootstrap-multiselect.js}"></script>
+<script th:src="@{/js/parsley.min.js}"></script>
+<script th:src="@{/js/mainscripts.bundle.js}"></script>
+<script type="text/javascript">
+    function checkInviteCode() {
+        let inviteCode = document.getElementById("inviteCode").value
+        let inviteCodeWarn = document.getElementById("inviteCodeWarn")
+        let submitBtn = document.getElementById("addUserBtn")
+        if (inviteCode === "" || inviteCode.length === 0) {
+            inviteCodeWarn.innerText = "邀请码不能为空"
+            inviteCodeWarn.removeAttribute("hidden")
+            submitBtn.setAttribute("disabled", "disabled")
+            return;
+        }
+        inviteCodeWarn.setAttribute("hidden", "hidden")
+        submitBtn.removeAttribute("disabled")
+    }
+</script>
+</body>
+</html>

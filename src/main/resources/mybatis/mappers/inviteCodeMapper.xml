@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.echo.mapper.InviteCodeMapper">
+    <resultMap id="inviteCodeMap" type="com.echo.pojo.InviteCode">
+        <result column="id" property="id" />
+        <result column="invite_code" property="inviteCode" />
+    </resultMap>
+    <select id="getInviteCodeById" resultType="int">
+        select invite_code from tb_invite_code where id = #{id}
+    </select>
+
+    <update id="updateInviteCodeById">
+        update tb_invite_code set invite_code = #{inviteCode} where id = #{id}
+    </update>
+</mapper>
