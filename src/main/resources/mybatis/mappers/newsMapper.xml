@@ -13,18 +13,18 @@
     </resultMap>
     
     <select id="findNewsWithoutContent" parameterType="string" resultMap="newsMap">
-        select id,title,publish,img_url,update_time from tb_news;
+        select `id`,`title`,`publish`,`img_url`,`update_time` from tb_news;
     </select>
 
     <select id="findNewsById" parameterType="string" resultMap="newsMap">
-        select * from tb_news where id = #{id};
+        select * from tb_news where `id` = #{id};
     </select>
 
     <update id="updateNewsById" parameterType="com.echo.pojo.News">
         update
             tb_news
         set
-            title = #{title},publish = #{publish},img_url = #{imgUrl},content = #{content}
-        where id = #{id}
+            `title` = #{title},`publish` = #{publish},`img_url` = #{imgUrl},`content` = #{content}
+        where `id` = #{id}
     </update>
 </mapper>

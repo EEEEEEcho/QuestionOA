@@ -26,7 +26,7 @@ public class QuestionController {
         List<Question> questionList = questionService.getQuestionByInfo(questionInfo);
         model.addAttribute("questionList",questionList);
         model.addAttribute("questionInfo",questionInfo);
-        return "/question/question-list";
+        return "question/question-list";
     }
 
     @GetMapping("/deleteQuestion/{questionId}/{questionInfo}")
@@ -42,7 +42,7 @@ public class QuestionController {
     public String updateQuestion(@PathVariable("questionId")Integer questionId,Model model){
         Question question = questionService.getQuestionById(questionId);
         model.addAttribute("question",question);
-        return "/question/question-update";
+        return "question/question-update";
     }
 
     @PostMapping("/doUpdateQuestion")
@@ -55,7 +55,7 @@ public class QuestionController {
     @GetMapping("/addQuestion/{questionInfo}")
     public String addQuestion(@PathVariable("questionInfo") String questionInfo,Model model){
         model.addAttribute("questionInfo",questionInfo);
-        return "/question/question-add";
+        return "question/question-add";
     }
 
     @PostMapping("/doAddQuestion")

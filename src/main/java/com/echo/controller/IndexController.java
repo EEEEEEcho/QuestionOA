@@ -13,7 +13,7 @@ public class IndexController {
 
     @GetMapping("/fail")
     public String error(){
-        return "/page-500";
+        return "page-500";
     }
 
     @GetMapping("/toLogin")

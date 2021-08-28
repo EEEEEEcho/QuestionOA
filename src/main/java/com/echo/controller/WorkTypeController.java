@@ -30,13 +30,13 @@ public class WorkTypeController {
     public String getAllWorkType(Model model){
         List<WorkType> workTypes = workTypeService.findAllWorkType();
         model.addAttribute("workTypeList",workTypes);
-        return "/worktype/worktype-list";
+        return "worktype/worktype-list";
     }
 
 
     @GetMapping("/addWorkType")
     public String addWorkType(){
-        return "/worktype/worktype-add";
+        return "worktype/worktype-add";
     }
 
 
@@ -54,7 +54,7 @@ public class WorkTypeController {
         String oldName = workType.getName();
         model.addAttribute("oldWorkType",oldName);
         model.addAttribute("workType",workType);
-        return "/worktype/worktype-update";
+        return "worktype/worktype-update";
     }
 
     @PostMapping("/doUpdate")
@@ -74,7 +74,7 @@ public class WorkTypeController {
         List<String> questionInfoList =  workTypeService.management(workTypeName);
         model.addAttribute("workTypeName",workTypeName);
         model.addAttribute("questionInfoList",questionInfoList);
-        return "/worktype/worktype-management";
+        return "worktype/worktype-management";
     }
 
     @GetMapping("/deleteQuestionInfo/{workTypeName}/{questionInfo}")
@@ -91,7 +91,7 @@ public class WorkTypeController {
         List<String> list = questionInfoService.getQuestionInfoWorkTypeNotHave(workTypeName);
         model.addAttribute("workTypeName",workTypeName);
         model.addAttribute("questionInfoList",list);
-        return "/worktype/worktype-questioninfo-add";
+        return "worktype/worktype-questioninfo-add";
     }
 
     @PostMapping("/doAddQuestionInfo")

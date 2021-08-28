@@ -40,14 +40,14 @@ public class NewsController {
         List<News> newsList = newsService.findNewsWithoutContent();
         model.addAttribute("newsList",newsList);
 
-        return "/news/news-list";
+        return "news/news-list";
     }
 
     @GetMapping("/updateNews/{newsId}")
     public String updateNews(@PathVariable("newsId")String newsId,Model model){
         News news = newsService.findNewsById(newsId);
         model.addAttribute("news",news);
-        return "/news/news-update";
+        return "news/news-update";
     }
 
     @PostMapping("/doUpdate")
@@ -70,7 +70,7 @@ public class NewsController {
                 Files.write(path,fileBytes);
                 //http://127.0.0.1:9007/temp/1430063107358588928.jpeg
                 String imageUrl  = "http://127.0.0.1:" +  port + "/temp/" +  newFileName + "." + type[1];
-                System.out.println(imageUrl);
+                //System.out.println(imageUrl);
                 News news = new News();
                 news.setId(id);
                 news.setTitle(title);

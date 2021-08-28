@@ -25,7 +25,7 @@ public class QuestionInfoController {
     public String getAllQuestionInfo(Model model){
         List<String> questionInfoList = questionInfoService.getAllQuestionInfo();
         model.addAttribute("questionInfoList",questionInfoList);
-        return "/questioninfo/questioninfo-list";
+        return "questioninfo/questioninfo-list";
     }
 
     @GetMapping("/deleteQuestionInfo/{questionInfoName}")
@@ -38,7 +38,7 @@ public class QuestionInfoController {
     public String addQuestionInfo(Model model){
         List<WorkType> workTypeList = workTypeService.findAllWorkType();
         model.addAttribute("workTypeList",workTypeList);
-        return "/questioninfo/questioninfo-add";
+        return "questioninfo/questioninfo-add";
     }
     @PostMapping("/doAddQuestionInfo")
     public String doAddQuestionInfo(@RequestParam("questionFile")MultipartFile file,@RequestParam("workType")String workType){

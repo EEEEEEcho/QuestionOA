@@ -28,31 +28,31 @@
     </resultMap>
     <select id="getAllUsers" resultMap="userMap">
         select
-               id,real_name,score,`rank`,phone_number,
-               work_type,department,level,create_time,update_time,`role`
+               `id`,`real_name`,`score`,`rank`,`phone_number`,
+               `work_type`,`department`,`level`,`create_time`,`update_time`,`role`
         from
             tb_user;
     </select>
     <delete id="deleteUser">
-        delete from tb_user where id = #{userId}
+        delete from tb_user where `id` = #{userId}
     </delete>
 
     <select id="findUpdateInfoById" parameterType="long" resultMap="userMap">
         select
-               id,phone_number,work_type,real_name,`role`
-        from tb_user where id = #{userId}
+               `id`,`phone_number`,`work_type`,`real_name`,`role`
+        from tb_user where `id` = #{userId}
     </select>
 
     <update id="updateUser" parameterType="com.echo.pojo.UserInfo">
-        update tb_user set real_name = #{realName},phone_number = #{phoneNumber},
-                           work_type = #{workType},`role` = #{role} where id = #{id}
+        update tb_user set `real_name` = #{realName},`phone_number` = #{phoneNumber},
+                           `work_type` = #{workType},`role` = #{role} where `id` = #{id}
     </update>
 
     <update id="resetWorkType" parameterType="string">
-        update tb_user set work_type=#{newType} where work_type = #{workType}
+        update tb_user set `work_type`=#{newType} where `work_type` = #{workType}
     </update>
 
     <select id="getUserByPhoneNum" parameterType="string" resultMap="userMap">
-        select * from tb_user where phone_number = #{phoneNumber}
+        select * from tb_user where `phone_number` = #{phoneNumber}
     </select>
 </mapper>

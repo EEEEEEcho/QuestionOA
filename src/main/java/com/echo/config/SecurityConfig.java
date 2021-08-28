@@ -20,7 +20,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //请求授权的规则，必须要有管理员权限才可以访问
         http.authorizeRequests()
-                .antMatchers("/user").hasRole("管理员")
+                .antMatchers("/user").hasRole("管理员").
+                antMatchers("/temp/**").permitAll()
         .antMatchers("/question").hasRole("管理员")
         .antMatchers("/questioninfo").hasRole("管理员")
                 .antMatchers("/worktype").hasRole("管理员")

@@ -10,39 +10,39 @@
         <result column="create_time" property="createTime" />
     </resultMap>
     <delete id="deleteQuestionInfoByWorkType" parameterType="string">
-        delete from tb_test_question_info where worktype = #{workType}
+        delete from tb_question_info where `worktype` = #{workType}
     </delete>
 
     <delete id="deleteByWorkTypeAndName" parameterType="string">
-        delete from tb_test_question_info where worktype = #{workType} and name = #{name}
+        delete from tb_question_info where `worktype` = #{workType} and `name` = #{name}
     </delete>
 
     <delete id="deleteQuestionInfoByName" parameterType="string">
-        delete from tb_test_question_info where name = #{name}
+        delete from tb_question_info where `name` = #{name}
     </delete>
 
     <select id="getQuestionInfoByWorkType" resultType="string">
-        select name from tb_test_question_info where worktype = #{workType}
+        select `name` from tb_question_info where `worktype` = #{workType}
     </select>
     
     <select id="getQuestionInfoWorkTypeNotHave" resultType="string">
-        select distinct question_info from tb_test_question where question_info not in (select name from tb_test_question_info  where worktype = #{workType})
+        select distinct `question_info` from tb_question where `question_info` not in (select `name` from tb_question_info  where `worktype` = #{workType})
     </select>
 
     <insert id="addQuestionInfo" parameterType="com.echo.pojo.QuestionInfo">
-        insert into tb_test_question_info(id, name, worktype) values (#{id},#{name},#{workType})
+        insert into tb_question_info(`id`, `name`, `worktype`) values (#{id},#{name},#{workType})
     </insert>
 
     <update id="resetWorkType" parameterType="string">
-        update tb_test_question_info set worktype = #{newWorkType} where worktype = #{oldWorkType}
+        update tb_question_info set `worktype` = #{newWorkType} where `worktype` = #{oldWorkType}
     </update>
 
     <select id="getAllQuestionInfo" resultType="string">
-        select distinct name from tb_test_question_info
+        select distinct `name` from tb_question_info
     </select>
 
     <select id="getQuestionInfoByWorkTypeAndName" resultMap="questionInfoMap">
-        select * from tb_test_question_info where name = #{questionInfoName} and worktype = #{workType}
+        select * from tb_question_info where `name` = #{questionInfoName} and `worktype` = #{workType}
     </select>
 
 </mapper>

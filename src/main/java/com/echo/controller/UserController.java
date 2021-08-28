@@ -23,7 +23,7 @@ public class UserController {
     public String getAllUsers(Model model){
         List<UserInfo> userList = userService.getAllUsers();
         model.addAttribute("userList",userList);
-        return "/user/user-list";
+        return "user/user-list";
     }
 
     @GetMapping("/deleteUser/{userId}")
@@ -38,7 +38,7 @@ public class UserController {
         List<WorkType> workTypeList = workTypeService.findAllWorkType();
         model.addAttribute("user",user);
         model.addAttribute("workTypeList",workTypeList);
-        return "/user/user-update";
+        return "user/user-update";
     }
 
     @RequestMapping(value = "/doUpdate",method = RequestMethod.POST)

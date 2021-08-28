@@ -17,14 +17,14 @@ public class InviteCodeController {
     public String getInviteCode(Model model){
         Integer inviteCode = inviteCodeService.getInviteCodeById();
         model.addAttribute("inviteCode",inviteCode);
-        return "/invitecode/invitecode-list";
+        return "invitecode/invitecode-list";
     }
 
     @GetMapping("/updateInviteCode/{inviteCode}")
     public String updateInviteCode(@PathVariable("inviteCode") Integer inviteCode, Model model){
 //        System.out.println(inviteCode);
         model.addAttribute("inviteCode",inviteCode);
-        return "/invitecode/invitecode-update";
+        return "invitecode/invitecode-update";
     }
 
     @PostMapping("/doUpdate")

@@ -8,10 +8,10 @@
         <result column="invite_code" property="inviteCode" />
     </resultMap>
     <select id="getInviteCodeById" resultType="int">
-        select invite_code from tb_invite_code where id = #{id}
+        select `invite_code` from tb_invite_code where `id` = #{id}
     </select>
 
     <update id="updateInviteCodeById">
-        update tb_invite_code set invite_code = #{inviteCode} where id = #{id}
+        update tb_invite_code set `invite_code` = #{inviteCode} where `id` = #{id}
     </update>
 </mapper>
