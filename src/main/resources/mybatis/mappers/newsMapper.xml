@@ -24,7 +24,7 @@
         update
             tb_news
         set
-            `title` = #{title},`publish` = #{publish},`img_url` = #{imgUrl},`content` = #{content}
+            `title` = #{title},`publish` = #{publish},`img_url` = #{imgUrl},`content` = #{content},`update_time` = current_timestamp
         where `id` = #{id}
     </update>
 </mapper>

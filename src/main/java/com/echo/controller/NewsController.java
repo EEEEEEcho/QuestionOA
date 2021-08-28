@@ -34,6 +34,8 @@ public class NewsController {
     private String staticAccessPath ;
     @Value("${server.port}")
     private String port;
+    @Value("${application.hostaddr}")
+    private String hostAddr;
 
     @GetMapping("/getAllNews")
     public String getAllNews(Model model){
@@ -69,7 +71,7 @@ public class NewsController {
                 Path path = Paths.get(profile, newFileName + "." + type[1]);
                 Files.write(path,fileBytes);
                 //http://127.0.0.1:9007/temp/1430063107358588928.jpeg
-                String imageUrl  = "http://127.0.0.1:" +  port + "/temp/" +  newFileName + "." + type[1];
+                String imageUrl  =  hostAddr + ":" +  port + "/temp/" +  newFileName + "." + type[1];
                 //System.out.println(imageUrl);
                 News news = new News();
                 news.setId(id);
