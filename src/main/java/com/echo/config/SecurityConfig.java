@@ -56,4 +56,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //auth.jdbcAuthentication().withUser()
         auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
     }
+
 }

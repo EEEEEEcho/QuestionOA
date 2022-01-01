@@ -19,4 +19,6 @@ public interface UserMapper {
     public void resetWorkType(@Param("newType") String newType,@Param("workType") String workType);
 
     public UserInfo getUserByPhoneNum(@Param("phoneNumber") String phoneNumber);
+
+    public void resetUserScore();
 }

@@ -4,7 +4,7 @@ application:
   #profile: G:/FileUpload/
   profile: /home/ubuntu/newsimage/
   staticAccessPath: /temp/**
-  hostaddr: http://101.42.106.156
+  hostaddr: http://1.14.93.93
 spring:
   application:
     name: question-oa

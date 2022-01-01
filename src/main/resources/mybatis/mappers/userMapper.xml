@@ -55,4 +55,8 @@
     <select id="getUserByPhoneNum" parameterType="string" resultMap="userMap">
         select * from tb_user where `phone_number` = #{phoneNumber}
     </select>
+
+    <update id="resetUserScore">
+        update tb_user set `score` = 0,`rank` = -1,`total_rank` = -1,`level`= '无'
+    </update>
 </mapper>
